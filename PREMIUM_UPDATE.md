@@ -1,6 +1,16 @@
 # VYRA — actualización visual
 
-Estado: publicado en Gviso el 19 de septiembre de 2026, tras autorización del usuario. Versión Cloudflare: 32fd0609-d2b5-49be-a58e-41a561eabf19. HTML, CSS, JavaScript e imágenes nuevas contrastados por SHA-256 contra los archivos locales.
+Estado: refinamiento comercial publicado en Gviso el 19 de septiembre de 2026. Versión Cloudflare: 95c06eba-0d52-41fd-971d-c216ac0d50d2. HTML, CSS y JavaScript contrastados públicamente por HTTP y SHA-256 contra los archivos locales; imágenes conservadas de la publicación anterior.
+
+## Refinamiento comercial
+
+- Menos texto editorial y secciones repetidas; ingredientes y detalles técnicos desplegables.
+- Precio, contenido y compra directa visibles desde la portada; tarjetas de producto simplificadas.
+- Acceso móvil a compra después de salir de la portada, sincronizado con el carrito.
+- Identidad visual y precios originales conservados; sin testimonios ni promesas comerciales inventados.
+- Comprobados selección de productos, carrito y checkout simulado, anclas y consola.
+- Revisados los anchos 390, 768 y 1440 px sin desbordamiento horizontal.
+- Nueva capa visual en `commerce.css`. Sigue siendo una demostración sin pagos reales.
 
 ## Archivos
 

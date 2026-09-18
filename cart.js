@@ -1,4 +1,19 @@
 /* Shared, dependency-free demo cart. All values are conceptual; no network writes. */
+// Reveal the mobile purchase bar only after the hero, never over its first impression.
+const quickPurchase = document.querySelector('.mobile-purchase');
+document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
+  const target = document.getElementById(link.getAttribute('href').slice(1));
+  const disclosure = target?.matches('details') ? target : target?.closest('details');
+  if (disclosure) disclosure.open = true;
+}));
+if (quickPurchase) {
+  quickPurchase.inert = true;
+  new IntersectionObserver(entries => {
+    const visible = entries[0].boundingClientRect.bottom < 0;
+    quickPurchase.classList.toggle('is-visible', visible);
+    quickPurchase.inert = !visible || document.querySelector('#cart').getAttribute('aria-hidden') === 'false';
+  }).observe(document.querySelector('.hero'));
+}
 window.createDemoCart = function(config) {
   const $ = s => document.querySelector(s);
   const drawer = $('#cart'), overlay = $(config.overlay), trigger = $(config.trigger);
@@ -55,6 +70,7 @@ window.createDemoCart = function(config) {
   function hide() {
     drawer.classList.remove(config.openClass); overlay.classList.remove(config.overlayClass);
     document.body.classList.remove(config.bodyClass); isolate(false);
+    if (quickPurchase) quickPurchase.inert = !quickPurchase.classList.contains('is-visible');
     trigger.setAttribute('aria-expanded','false');
     if (returnFocus?.isConnected) returnFocus.focus(); else trigger.focus();
     drawer.inert=true; drawer.setAttribute('aria-hidden','true');
@@ -93,4 +109,3 @@ window.setProductPhoto = function(img, name, alt) {
   img.srcset = 'assets/'+name+'-640.webp 640w, assets/'+name+'.webp 1254w';
   img.src = 'assets/'+name+'.webp'; img.alt = alt;
 };
-

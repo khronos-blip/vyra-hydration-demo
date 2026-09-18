@@ -8,7 +8,7 @@ const flavors={
     "soft": "#f3d2b7",
     "code": "SG–01",
     "profile": "Profile 01 / Citrus",
-    "hero": "Bright grapefruit. A dry, lightly saline finish. Made for early miles and the start of something good.",
+    "hero": "Bright grapefruit. A dry finish. Electrolytes in a single-serve stick.",
     "detail": "Bright peel, a clean tart center, and a dry finish. Twenty individual sticks, ready for your next morning loop.",
     "alt": "VYRA Solar Grapefruit carton and coral-accented sticks beside grapefruit on a running track bench",
     "route": "Morning loop",
@@ -26,7 +26,7 @@ const flavors={
     "soft": "#dfe5c5",
     "code": "EL–02",
     "profile": "Profile 02 / Green citrus",
-    "hero": "Sharp lime. A cool green edge. A pocket-sized ritual for long rides and warm afternoons.",
+    "hero": "Tart lime. A fresh green finish. Ready for your bottle.",
     "detail": "Tart lime and a green aromatic edge with a clean exit. Twenty individual sticks for the miles between starts.",
     "alt": "VYRA Electric Lime carton and lime-accented sticks on a cycling workbench with fresh limes",
     "route": "Afternoon ride",
@@ -44,7 +44,7 @@ const flavors={
     "soft": "#e2d9ed",
     "code": "MB–03",
     "profile": "Profile 03 / Dark fruit",
-    "hero": "Blackberry depth. A bright hibiscus finish. For evening miles and the work you make time for.",
+    "hero": "Dark berries. Bright hibiscus. Your daily mix, with a different edge.",
     "detail": "Dark berries, hibiscus, and restrained sweetness. Twenty individual sticks for your evening reset.",
     "alt": "VYRA Midnight Berry carton and violet-accented sticks with blackberries at an indoor track at dusk",
     "route": "Evening track",
@@ -57,29 +57,23 @@ const flavors={
   }
 };
 const q=id=>document.getElementById(id), root=document.documentElement;
-const cart=createDemoCart({overlay:'#overlay',trigger:'#cartOpen',list:'#cartBody',total:'#total',badge:'#count',currency:'USD',noun:'loadout',openClass:'open',overlayClass:'open',bodyClass:'locked'});
+const cart=createDemoCart({overlay:'#overlay',trigger:'#cartOpen',list:'#cartBody',total:'#total',badge:'#count',currency:'USD',noun:'bag',openClass:'open',overlayClass:'open',bodyClass:'locked'});
 let selected='solar';
 function select(key) {
   selected=key;const f=flavors[key];document.body.dataset.flavor=key;
   root.style.setProperty('--accent',f.accent);root.style.setProperty('--soft',f.soft);root.style.setProperty('--accent-ink',f.ink);
   setProductPhoto(q('heroImage'),key+'-hero',f.alt);
-  setProductPhoto(q('loadImage'),key+'-detail',f.name+' carton and individual sticks in a photographic flat lay');
   q('heroFlavor').textContent=f.name+'.';q('heroCopy').textContent=f.hero;
-  q('heroCta').textContent='Choose '+f.name+' ↘';
-  q('profile').textContent=f.profile;q('mixCode').textContent=f.code;q('stamp').textContent=f.name+' / '+f.code;
-  q('loadCopy').textContent=f.detail;q('packName').textContent=f.name;q('add').textContent='Add '+f.name+' ↗';
+  q('heroCta').textContent='Add to bag · $32 ↗';
+  q('quick-name').textContent=f.name;
+  q('profile').textContent=f.profile;q('mixCode').textContent=f.code;
   document.querySelectorAll('button[data-flavor]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.flavor===key)));
-  const route=document.querySelector('.route');route.querySelector('.label').textContent='Example session / '+f.route;
-  route.querySelector('.value').innerHTML=f.distance+' <small>km</small>';
-  const datums=document.querySelectorAll('.datum');
-  datums[0].querySelector('.label').textContent=f.metric;
-  datums[0].querySelector('.value').innerHTML=f.pace+' <small>'+f.unit+'</small>';
-  datums[1].querySelector('.value').innerHTML=f.temp+' <small>C</small>';
-  datums[2].querySelector('.value').textContent=f.duration;
 }
 document.querySelectorAll('button[data-flavor]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.flavor)));
-q('heroCta').addEventListener('click',()=>{q('loadout').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
-q('add').addEventListener('click',()=>cart.add({id:selected,name:flavors[selected].name,note:'1 box · 20 sticks × 7 g',price:32,image:'assets/'+selected+'-hero-640.webp'}));
+function add(){cart.add({id:selected,name:flavors[selected].name,note:'1 box · 20 sticks × 7 g',price:32,image:'assets/'+selected+'-hero-640.webp'});}
+q('heroCta').addEventListener('click',add);
+q('quick-add').addEventListener('click',add);
+document.querySelectorAll('[data-product]').forEach(b=>b.addEventListener('click',()=>{select(b.dataset.product);add();}));
 const menu=q('menubtn'),links=q('navlinks');
 function closeMenu(){links.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open menu');}
 menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');});
