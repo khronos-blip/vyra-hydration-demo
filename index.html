@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c27">
+  <meta name="description" content="VYRA Daily Hydration: electrolitos en sticks de sabor limpio para acompañar tu ritmo diario. Demo conceptual, sin venta real.">
+  <meta property="og:title" content="VYRA — Hydration, in motion">
+  <meta property="og:description" content="Hidratación diaria en sticks, con electrolitos y sabores frescos.">
+  <meta property="og:type" content="website">
+  <title>VYRA — Hydration, in motion</title>
+  <style>
+    :root {
+      --ink:#102c27; --ink-2:#315049; --paper:#f7f7ef; --white:#fffef8;
+      --acid:#d9ff62; --mint:#bdecd9; --coral:#ff816f; --sky:#92dbe7;
+      --flavor:#ff816f; --flavor-2:#ffd46c; --line:rgba(16,44,39,.15);
+      --shadow:0 24px 70px rgba(16,44,39,.13); --radius:24px;
+      --wrap:min(1180px, calc(100vw - 40px));
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+    body.locked{overflow:hidden}
+    button,input{font:inherit}
+    button,a{transition:transform .2s ease,background .2s ease,color .2s ease,border-color .2s ease,opacity .2s ease}
+    button{color:inherit}
+    a{color:inherit;text-decoration:none}
+    img,svg{max-width:100%}
+    :focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+    .skip{position:fixed;top:8px;left:8px;z-index:200;background:var(--white);padding:10px 14px;border-radius:10px;transform:translateY(-140%)}
+    .skip:focus{transform:none}
+    .wrap{width:var(--wrap);margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .eyebrow:before{content:'';width:30px;height:2px;background:currentColor}
+    h1,h2,h3{font-family:'Manrope',sans-serif;letter-spacing:-.045em;line-height:1.02;margin:0}
+    h1{font-size:clamp(3.5rem,8.3vw,7.5rem)}
+    h2{font-size:clamp(2.25rem,5vw,4.6rem)}
+    h3{font-size:1.25rem}
+    p{margin:0}
+    .section{padding:110px 0}
+    .section-head{display:grid;grid-template-columns:1.2fr .7fr;gap:80px;align-items:end;margin-bottom:52px}
+    .section-head p{color:var(--ink-2);font-size:1.05rem;max-width:520px}
+    .btn{border:0;border-radius:999px;padding:15px 22px;display:inline-flex;align-items:center;justify-content:center;gap:11px;font-weight:800;cursor:pointer;background:var(--ink);color:var(--white);min-height:52px}
+    .btn:hover{transform:translateY(-2px);background:#1d443c}
+    .btn-acid{background:var(--acid);color:var(--ink)}
+    .btn-acid:hover{background:#c9ef50}
+    .btn-line{background:transparent;color:var(--ink);border:1px solid var(--line)}
+    .btn-line:hover{background:rgba(255,255,255,.45)}
+    .icon-btn{width:46px;height:46px;border:1px solid var(--line);border-radius:50%;background:transparent;display:grid;place-items:center;cursor:pointer;position:relative}
+    .icon-btn:hover{background:var(--white)}
+
+    .demo-bar{background:var(--ink);color:var(--white);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px;font-weight:700}
+    .site-header{position:sticky;top:0;z-index:50;background:rgba(247,247,239,.88);backdrop-filter:blur(16px);border-bottom:1px solid transparent}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{font-family:'Manrope';font-weight:800;letter-spacing:-.07em;font-size:1.65rem;display:flex;align-items:center;gap:8px}
+    .logo-mark{width:24px;height:24px;background:var(--acid);border-radius:50% 50% 48% 52%;display:inline-grid;place-items:center;transform:rotate(-12deg)}
+    .logo-mark:after{content:'';width:7px;height:12px;border:2px solid var(--ink);border-top:0;border-left:0;transform:rotate(45deg) translate(-1px,-1px)}
+    .nav-links{display:flex;align-items:center;gap:30px;font-size:.9rem;font-weight:700}
+    .nav-links a:hover{color:#5a7971}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .cart-count{position:absolute;right:-4px;top:-5px;min-width:19px;height:19px;border-radius:50%;background:var(--coral);color:white;display:grid;place-items:center;font-size:.65rem;font-weight:800;border:2px solid var(--paper)}
+    .menu-btn{display:none}
+
+    .hero{min-height:calc(100vh - 108px);display:grid;align-items:center;padding:48px 0 70px;position:relative;isolation:isolate}
+    .hero:before{content:'';position:absolute;z-index:-1;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(217,255,98,.42),rgba(217,255,98,0) 68%);left:-230px;top:-100px}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:60px}
+    .hero-copy{padding-top:12px}
+    .hero-copy h1{margin:18px 0 24px;max-width:720px}
+    .hero-copy h1 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--ink)}
+    .hero-copy>p{font-size:1.15rem;color:var(--ink-2);max-width:570px;margin-bottom:32px}
+    .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .mini-proof{display:flex;align-items:center;gap:12px;margin-top:34px;color:var(--ink-2);font-size:.84rem}
+    .mini-faces{display:flex}
+    .mini-faces span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--paper);margin-left:-7px;font-size:.65rem;font-weight:800}
+    .mini-faces span:first-child{margin-left:0;background:var(--sky)}
+    .mini-faces span:nth-child(2){background:var(--acid)}
+    .mini-faces span:nth-child(3){background:#f5aece}
+    .stars{letter-spacing:1px;color:#e55c39}
+    .product-stage{height:610px;position:relative;border-radius:44px;overflow:hidden;background:linear-gradient(145deg,var(--flavor),var(--flavor-2));box-shadow:var(--shadow);transition:background .45s ease}
+    .product-stage:before{content:'';position:absolute;width:360px;height:360px;border:1px solid rgba(255,255,255,.4);border-radius:50%;left:-80px;top:-95px;box-shadow:0 0 0 55px rgba(255,255,255,.09),0 0 0 110px rgba(255,255,255,.06)}
+    .stage-label{position:absolute;left:26px;top:25px;color:rgba(16,44,39,.7);font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .stage-chip{position:absolute;right:22px;top:20px;background:rgba(255,255,255,.6);backdrop-filter:blur(8px);padding:9px 13px;border-radius:999px;font-size:.74rem;font-weight:800}
+    .product-shadow{position:absolute;width:320px;height:55px;border-radius:50%;background:rgba(16,44,39,.22);filter:blur(16px);left:50%;bottom:50px;transform:translateX(-50%)}
+    .box{position:absolute;width:260px;height:350px;left:50%;top:50%;transform:translate(-53%,-48%) rotate(-6deg);background:var(--white);border-radius:15px;box-shadow:0 28px 45px rgba(25,50,43,.25);padding:28px 24px;overflow:hidden}
+    .box:before{content:'';position:absolute;inset:auto -70px -100px -90px;height:245px;border-radius:50%;background:var(--flavor);transition:background .35s ease}
+    .box-brand{font-family:'Manrope';font-size:2rem;font-weight:800;letter-spacing:-.09em}
+    .box-type{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;margin-top:2px}
+    .box-copy{position:absolute;left:24px;bottom:31px;color:var(--ink);z-index:1}
+    .box-copy strong{font-family:'Manrope';font-size:1.7rem;line-height:.9;display:block;max-width:150px;letter-spacing:-.05em;text-transform:uppercase}
+    .box-copy small{font-weight:700}
+    .pack{position:absolute;width:73px;height:315px;border-radius:9px;background:var(--ink);box-shadow:0 25px 40px rgba(16,44,39,.28);padding:14px 9px;color:white;overflow:hidden}
+    .pack:before,.pack:after{content:'';position:absolute;left:0;right:0;height:6px;background:repeating-linear-gradient(90deg,transparent 0 4px,rgba(255,255,255,.32) 4px 5px)}
+    .pack:before{top:7px}.pack:after{bottom:7px}
+    .pack-one{right:48px;bottom:48px;transform:rotate(15deg)}
+    .pack-two{left:44px;bottom:38px;transform:rotate(-22deg);background:var(--white);color:var(--ink)}
+    .pack-brand{font-family:'Manrope';font-weight:800;font-size:.8rem;letter-spacing:-.06em}
+    .pack-flavor{writing-mode:vertical-rl;transform:rotate(180deg);font-size:.64rem;text-transform:uppercase;font-weight:700;letter-spacing:.09em;position:absolute;right:11px;bottom:27px}
+    .bolt{position:absolute;right:10px;top:35px;font-size:1.25rem;color:var(--acid)}
+    .float-note{position:absolute;background:var(--white);padding:12px 15px;border-radius:14px;box-shadow:0 12px 24px rgba(16,44,39,.13);font-size:.72rem;font-weight:800;display:flex;gap:8px;align-items:center}
+    .float-note i{width:8px;height:8px;background:var(--acid);border-radius:50%}
+    .note-one{left:20px;bottom:118px;transform:rotate(-3deg)}
+    .note-two{right:20px;top:118px;transform:rotate(3deg)}
+
+    .marquee{background:var(--acid);border-block:1px solid var(--ink);overflow:hidden;padding:14px 0}
+    .marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite;font-family:'Manrope';font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+    .marquee-track span{display:flex;align-items:center;gap:22px;padding-right:22px}
+    .marquee-track b{font-size:1.2rem}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+    .flavor-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:stretch}
+    .flavor-panel{background:var(--ink);color:white;border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;justify-content:space-between;min-height:530px}
+    .flavor-panel h2{font-size:clamp(2.3rem,4vw,4rem);margin:14px 0 18px}
+    .flavor-panel>div>p{color:#bed0cb;max-width:420px}
+    .flavor-options{display:grid;gap:10px;margin-top:38px}
+    .flavor-btn{width:100%;border:1px solid rgba(255,255,255,.18);background:transparent;color:white;border-radius:15px;padding:14px 15px;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;font-weight:700}
+    .flavor-btn:hover,.flavor-btn.active{background:white;color:var(--ink);transform:translateX(4px)}
+    .swatch{width:22px;height:22px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 5px rgba(255,255,255,.32)}
+    .flavor-btn small{margin-left:auto;opacity:.62;font-weight:500}
+    .flavor-showcase{border-radius:var(--radius);background:linear-gradient(145deg,var(--flavor),var(--flavor-2));position:relative;overflow:hidden;min-height:530px;transition:background .45s ease;padding:40px}
+    .flavor-showcase:after{content:attr(data-letter);position:absolute;font-family:'Manrope';font-weight:800;font-size:28rem;line-height:.8;right:-15px;bottom:-70px;color:rgba(255,255,255,.17)}
+    .flavor-data{position:relative;z-index:3;max-width:330px}
+    .flavor-data h3{font-size:2rem;margin-bottom:12px}
+    .flavor-data p{color:rgba(16,44,39,.75)}
+    .flavor-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+    .flavor-tags span{padding:7px 10px;border:1px solid rgba(16,44,39,.2);border-radius:999px;font-size:.72rem;font-weight:700}
+    .big-stick{position:absolute;z-index:2;width:112px;height:420px;right:25%;bottom:-20px;border-radius:13px;background:var(--ink);color:white;transform:rotate(12deg);box-shadow:0 30px 55px rgba(16,44,39,.3);padding:25px 15px}
+    .big-stick .pack-brand{font-size:1.35rem}.big-stick .pack-flavor{font-size:.8rem;right:20px;bottom:35px}
+
+    .benefit-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}
+    .benefit{padding:34px 28px;min-height:280px;border-right:1px solid var(--line);display:flex;flex-direction:column}
+    .benefit:last-child{border:0}
+    .benefit-num{font-family:'Manrope';font-size:4rem;font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--ink);margin-bottom:auto}
+    .benefit h3{margin:28px 0 10px}.benefit p{font-size:.9rem;color:var(--ink-2)}
+    .responsible-note{margin-top:20px;color:var(--ink-2);font-size:.78rem}
+
+    .formula{background:var(--ink);color:white;position:relative;overflow:hidden}
+    .formula:before{content:'';position:absolute;width:560px;height:560px;border-radius:50%;border:1px solid rgba(255,255,255,.12);right:-120px;top:-210px;box-shadow:0 0 0 80px rgba(255,255,255,.035),0 0 0 160px rgba(255,255,255,.025)}
+    .formula .section-head p{color:#b9cbc6}
+    .formula-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:24px}
+    .formula-main{border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:38px;background:rgba(255,255,255,.04)}
+    .formula-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:30px}
+    .formula-item{background:rgba(255,255,255,.07);border-radius:16px;padding:20px}
+    .formula-item strong{font-family:'Manrope';display:block;font-size:1.1rem;margin-bottom:4px}.formula-item small{color:#b9cbc6}
+    .formula-side{background:var(--acid);color:var(--ink);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;justify-content:space-between}
+    .formula-side .drop{font-size:4.5rem;line-height:1}.formula-side h3{font-size:2.2rem;margin:20px 0 12px}.formula-side p{color:var(--ink-2)}
+    .mix-steps{display:flex;gap:8px;margin-top:36px}.mix-steps span{flex:1;border-top:1px solid var(--ink);padding-top:9px;font-size:.68rem;font-weight:800;text-transform:uppercase}
+
+    .moments{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .moment{min-height:450px;border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;color:white}
+    .moment:nth-child(1){background:linear-gradient(160deg,#3e645c,#102c27)}
+    .moment:nth-child(2){background:linear-gradient(160deg,#ff997f,#d64b5f)}
+    .moment:nth-child(3){background:linear-gradient(160deg,#8cd6e4,#2c7e91)}
+    .moment:before{content:'';position:absolute;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.14);right:-70px;top:-50px}
+    .moment-icon{font-size:5rem;filter:grayscale(1) brightness(4);opacity:.72;transform:rotate(-8deg);align-self:flex-end}
+    .moment span{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800}.moment h3{font-size:2rem;margin:10px 0}.moment p{color:rgba(255,255,255,.76);font-size:.9rem}
+
+    .proof-band{background:#e5eef0}
+    .proof-top{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
+    .rating-big{font-family:'Manrope';font-size:4.5rem;font-weight:800;letter-spacing:-.08em;line-height:.8}.rating-big small{font-size:1rem;letter-spacing:0}
+    .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .quote{background:var(--white);border-radius:20px;padding:26px;min-height:255px;display:flex;flex-direction:column;justify-content:space-between}
+    .quote p{font-size:1.03rem}.quote-person{display:flex;gap:12px;align-items:center;margin-top:28px}.avatar{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--mint)}.quote-person small{display:block;color:var(--ink-2)}
+    .demo-label{font-size:.67rem;background:var(--ink);color:white;padding:6px 9px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;font-weight:800}
+
+    .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .product-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+    .product-card.featured{border:2px solid var(--ink);transform:translateY(-10px)}
+    .card-visual{height:240px;position:relative;display:grid;place-items:center;background:linear-gradient(145deg,var(--card-a),var(--card-b));overflow:hidden}
+    .card-visual:after{content:'';width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,.4);position:absolute}
+    .mini-box{z-index:1;width:130px;height:170px;background:var(--white);box-shadow:0 16px 28px rgba(16,44,39,.2);border-radius:8px;padding:15px;transform:rotate(-5deg);font-family:'Manrope';font-weight:800;font-size:1.1rem;position:relative;overflow:hidden}
+    .mini-box:after{content:'';position:absolute;left:-20px;right:-20px;bottom:-40px;height:95px;border-radius:50%;background:var(--card-a)}
+    .popular{position:absolute;top:16px;right:16px;z-index:2;background:var(--acid);font-size:.66rem;font-weight:800;padding:7px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.08em}
+    .card-body{padding:25px;display:flex;flex-direction:column;flex:1}.card-body h3{font-size:1.4rem}.card-body>p{color:var(--ink-2);font-size:.88rem;margin:9px 0 18px}.price{font-family:'Manrope';font-size:2rem;font-weight:800;letter-spacing:-.05em;margin-top:auto}.price small{font-family:'DM Sans';font-size:.75rem;color:var(--ink-2);letter-spacing:0;font-weight:500}.card-body .btn{width:100%;margin-top:18px}
+    .subscribe-box{margin-top:26px;background:var(--mint);border-radius:var(--radius);padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:30px}.subscribe-box h3{font-size:1.55rem}.subscribe-box p{color:var(--ink-2);font-size:.9rem;margin-top:5px}.toggle-group{background:rgba(255,255,255,.55);padding:5px;border-radius:999px;display:flex}.toggle-group button{border:0;background:transparent;border-radius:999px;padding:10px 15px;cursor:pointer;font-size:.78rem;font-weight:800}.toggle-group button.active{background:var(--ink);color:white}
+
+    .faq-layout{display:grid;grid-template-columns:.65fr 1.35fr;gap:70px}.faq-intro p{color:var(--ink-2);margin:20px 0}.faq-list{border-top:1px solid var(--line)}details{border-bottom:1px solid var(--line)}summary{list-style:none;cursor:pointer;padding:24px 40px 24px 0;font-family:'Manrope';font-weight:700;position:relative}summary::-webkit-details-marker{display:none}summary:after{content:'+';position:absolute;right:4px;top:19px;font-size:1.7rem;font-weight:400}details[open] summary:after{content:'−'}details p{padding:0 50px 24px 0;color:var(--ink-2);font-size:.94rem}
+
+    .final-cta{padding:34px 0 90px}.cta-box{background:var(--ink);color:white;border-radius:34px;padding:70px;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:end;gap:50px}.cta-box:after{content:'V';position:absolute;right:140px;top:-140px;font-family:'Manrope';font-size:30rem;font-weight:800;color:rgba(255,255,255,.035)}.cta-box h2{max-width:760px}.cta-box p{color:#b9cbc6;margin-top:18px;max-width:580px}.cta-box .btn{position:relative;z-index:1}
+    footer{border-top:1px solid var(--line);padding:50px 0 28px}.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,.6fr);gap:30px}.footer-brand p{color:var(--ink-2);max-width:310px;font-size:.88rem;margin-top:14px}.footer-col strong{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}.footer-col a{display:block;color:var(--ink-2);font-size:.86rem;margin:8px 0}.footer-col a:hover{color:var(--ink)}.footer-bottom{border-top:1px solid var(--line);margin-top:42px;padding-top:20px;display:flex;justify-content:space-between;color:var(--ink-2);font-size:.74rem;gap:20px}
+
+    .overlay{position:fixed;inset:0;background:rgba(8,24,21,.48);backdrop-filter:blur(3px);z-index:89;opacity:0;pointer-events:none;transition:opacity .25s}.overlay.open{opacity:1;pointer-events:auto}
+    .cart-drawer{position:fixed;right:0;top:0;bottom:0;width:min(440px,100vw);background:var(--white);z-index:90;transform:translateX(102%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(16,44,39,.18)}.cart-drawer.open{transform:none}.cart-head{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.cart-head h2{font-size:1.5rem}.cart-content{padding:20px 24px;overflow:auto;flex:1}.cart-empty{text-align:center;padding:70px 20px;color:var(--ink-2)}.cart-empty b{display:block;font-size:2.6rem;margin-bottom:10px}.cart-item{display:grid;grid-template-columns:72px 1fr auto;gap:13px;padding:16px 0;border-bottom:1px solid var(--line)}.cart-thumb{height:82px;border-radius:12px;background:linear-gradient(145deg,var(--thumb-a),var(--thumb-b));display:grid;place-items:center;font-family:'Manrope';font-weight:800}.cart-item h3{font-size:.95rem;letter-spacing:-.02em}.cart-item small{color:var(--ink-2)}.qty{display:flex;align-items:center;gap:10px;margin-top:9px}.qty button{width:25px;height:25px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer}.remove{border:0;background:transparent;color:#a94838;font-size:.72rem;cursor:pointer;padding:0}.cart-price{font-weight:800;font-size:.9rem}.cart-foot{padding:20px 24px 26px;border-top:1px solid var(--line);background:var(--paper)}.cart-total{display:flex;justify-content:space-between;font-family:'Manrope';font-weight:800;font-size:1.2rem;margin-bottom:4px}.cart-foot>small{display:block;color:var(--ink-2);margin-bottom:15px}.cart-foot .btn{width:100%}.notice{position:fixed;z-index:120;left:50%;bottom:25px;transform:translate(-50%,130px);background:var(--ink);color:white;border-radius:999px;padding:13px 18px;font-size:.84rem;font-weight:700;box-shadow:var(--shadow);transition:transform .3s ease}.notice.show{transform:translate(-50%,0)}
+
+    @media(max-width:960px){
+      .nav-links{display:none;position:absolute;left:20px;right:20px;top:76px;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.menu-btn{display:grid}.nav-actions>.btn{display:none}
+      .hero{padding-top:35px}.hero-grid{grid-template-columns:1fr;gap:42px}.hero-copy{text-align:center}.hero-copy>p,.hero-copy h1{margin-left:auto;margin-right:auto}.hero-actions,.mini-proof{justify-content:center}.product-stage{height:560px;max-width:620px;width:100%;margin:auto}
+      .section-head{grid-template-columns:1fr;gap:22px}.flavor-layout{grid-template-columns:1fr}.benefit-grid{grid-template-columns:repeat(2,1fr)}.benefit:nth-child(2){border-right:0}.benefit:nth-child(-n+2){border-bottom:1px solid var(--line)}
+      .formula-grid{grid-template-columns:1fr}.moments{grid-template-columns:1fr 1fr}.moment:last-child{grid-column:span 2}.testimonials{grid-template-columns:1fr}.quote{min-height:unset}.shop-grid{grid-template-columns:1fr 1fr}.product-card:last-child{grid-column:1/-1}.product-card.featured{transform:none}.faq-layout{grid-template-columns:1fr;gap:35px}.cta-box{grid-template-columns:1fr;padding:50px}.footer-grid{grid-template-columns:1.2fr repeat(3,.7fr)}
+    }
+    @media(max-width:640px){
+      :root{--wrap:min(100% - 28px,1180px)}.section{padding:78px 0}.demo-bar{font-size:.61rem}.nav{height:68px}.nav-links{top:68px}.nav-actions{gap:6px}.product-stage{height:485px;border-radius:28px}.box{width:220px;height:300px}.pack{width:62px;height:275px}.pack-one{right:25px}.pack-two{left:23px}.float-note{display:none}.hero{min-height:0}.hero-copy h1{font-size:3.55rem}.hero-copy>p{font-size:1rem}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}.mini-proof{align-items:flex-start}.section-head{margin-bottom:34px}.flavor-panel{padding:27px;min-height:unset}.flavor-showcase{min-height:500px;padding:28px}.big-stick{right:18%;width:96px;height:360px}.benefit-grid{grid-template-columns:1fr}.benefit{border-right:0;border-bottom:1px solid var(--line)!important;min-height:220px}.benefit:last-child{border-bottom:0!important}.formula-main,.formula-side{padding:27px}.formula-list{grid-template-columns:1fr}.moments{grid-template-columns:1fr}.moment,.moment:last-child{grid-column:auto;min-height:370px}.proof-top{align-items:flex-start;flex-direction:column}.shop-grid{grid-template-columns:1fr}.product-card:last-child{grid-column:auto}.subscribe-box{align-items:flex-start;flex-direction:column}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}.cta-box{padding:38px 27px}.cart-drawer{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="demo-bar">Concepto ficticio · Demo interactiva · No es una tienda real</div>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Navegación principal">
+      <a class="logo" href="#inicio" aria-label="VYRA, inicio"><span class="logo-mark" aria-hidden="true"></span>VYRA</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#sabores">Sabores</a><a href="#formula">La fórmula</a><a href="#momentos">Momentos</a><a href="#packs">Packs</a><a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-acid" data-scroll-shop>Elegir pack <span aria-hidden="true">↘</span></button>
+        <button class="icon-btn" id="cartOpen" aria-label="Abrir carrito" aria-haspopup="dialog"><span aria-hidden="true">◎</span><span class="cart-count" id="cartCount">0</span></button>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true">≡</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="hero-grid wrap">
+        <div class="hero-copy">
+          <span class="eyebrow">Daily electrolyte blend</span>
+          <h1>Move more.<br><em>Reset better.</em></h1>
+          <p>Electrolitos de sabor limpio, en sticks fáciles de llevar. Una forma simple de acompañar tu agua y mantener el ritmo.</p>
+          <div class="hero-actions"><button class="btn btn-acid" data-scroll-shop>Descubrir VYRA <span>↘</span></button><a class="btn btn-line" href="#formula">Ver ingredientes</a></div>
+          <div class="mini-proof"><div class="mini-faces" aria-hidden="true"><span>AL</span><span>MC</span><span>JR</span></div><div><span class="stars" aria-label="Cinco estrellas">★★★★★</span><br>Opiniones ilustrativas de esta demo</div></div>
+        </div>
+        <div class="product-stage" id="heroStage" aria-label="Representación gráfica de caja y sticks VYRA sabor Pomelo Solar">
+          <span class="stage-label">Hydration / 01</span><span class="stage-chip">20 sticks</span><div class="product-shadow"></div>
+          <div class="box"><div class="box-brand">VYRA</div><div class="box-type">daily hydration</div><div class="box-copy"><strong id="boxFlavor">Pomelo Solar</strong><small>20 × 7 g</small></div></div>
+          <div class="pack pack-one"><span class="pack-brand">VYRA</span><span class="bolt">ϟ</span><span class="pack-flavor" id="stickFlavor">Pomelo Solar</span></div>
+          <div class="pack pack-two"><span class="pack-brand">VYRA</span><span class="pack-flavor">electrolyte blend</span></div>
+          <div class="float-note note-one"><i></i> Sin colorantes artificiales</div><div class="float-note note-two"><i></i> Mezcla en 500–700 ml</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Mezcla · Agita · Muévete <b>✦</b> 3 sabores limpios <b>✦</b> Electrolitos esenciales <b>✦</b> Formato de bolsillo <b>✦</b></span><span>Mezcla · Agita · Muévete <b>✦</b> 3 sabores limpios <b>✦</b> Electrolitos esenciales <b>✦</b> Formato de bolsillo <b>✦</b></span></div></div>
+
+    <section class="section" id="sabores">
+      <div class="wrap">
+        <div class="flavor-layout">
+          <div class="flavor-panel">
+            <div><span class="eyebrow">Tu agua, con carácter</span><h2>Elige tu<br>frecuencia.</h2><p>Perfiles frescos y definidos, pensados para saber bien sin resultar pesados.</p></div>
+            <div class="flavor-options" role="group" aria-label="Selecciona un sabor">
+              <button class="flavor-btn active" data-flavor="pomelo" style="--swatch:#ff816f" aria-pressed="true"><span class="swatch"></span>Pomelo Solar <small>cítrico + seco</small></button>
+              <button class="flavor-btn" data-flavor="lima" style="--swatch:#bde66e" aria-pressed="false"><span class="swatch"></span>Lima Eléctrica <small>ácido + verde</small></button>
+              <button class="flavor-btn" data-flavor="mora" style="--swatch:#9a89db" aria-pressed="false"><span class="swatch"></span>Mora Nocturna <small>frutal + suave</small></button>
+            </div>
+          </div>
+          <div class="flavor-showcase" id="flavorShowcase" data-letter="P">
+            <div class="flavor-data"><span class="eyebrow" id="flavorCode">Perfil 01</span><h3 id="flavorTitle">Pomelo Solar</h3><p id="flavorDesc">Pomelo rosado, piel de naranja y un final sutilmente salino.</p><div class="flavor-tags" id="flavorTags"><span>Vibrante</span><span>Poco dulce</span><span>Cítrico</span></div></div>
+            <div class="big-stick"><span class="pack-brand">VYRA</span><span class="bolt">ϟ</span><span class="pack-flavor" id="bigStickFlavor">Pomelo Solar</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="beneficios-title">
+      <div class="wrap">
+        <div class="section-head"><div><span class="eyebrow">Lo esencial, bien hecho</span><h2 id="beneficios-title">Una rutina que cabe en un bolsillo.</h2></div><p>Diseñado para complementar la hidratación diaria con una mezcla clara, práctica y fácil de entender.</p></div>
+        <div class="benefit-grid">
+          <article class="benefit"><div class="benefit-num">01</div><h3>Mezcla portátil</h3><p>Un stick individual para mochila, oficina o maleta. Solo añade agua.</p></article>
+          <article class="benefit"><div class="benefit-num">02</div><h3>Sabor limpio</h3><p>Perfiles equilibrados, sin colorantes artificiales ni sensación empalagosa.</p></article>
+          <article class="benefit"><div class="benefit-num">03</div><h3>Electrolitos clave</h3><p>Sodio, potasio y magnesio en una fórmula transparente y fácil de leer.</p></article>
+          <article class="benefit"><div class="benefit-num">04</div><h3>Ritual flexible</h3><p>Úsalo cuando quieras darle intención y sabor a tu próxima botella de agua.</p></article>
+        </div>
+        <p class="responsible-note">VYRA es un concepto ficticio de alimento complementario. No sustituye una alimentación variada ni está destinado a prevenir, tratar o curar enfermedades.</p>
+      </div>
+    </section>
+
+    <section class="section formula" id="formula">
+      <div class="wrap">
+        <div class="section-head"><div><span class="eyebrow">Dentro de cada stick</span><h2>Simple por diseño.</h2></div><p>Una fórmula conceptual centrada en electrolitos esenciales y sabor natural. Las cantidades son ilustrativas para esta demo.</p></div>
+        <div class="formula-grid">
+          <div class="formula-main"><h3>Perfil de ingredientes</h3><div class="formula-list">
+            <div class="formula-item"><strong>Sodio</strong><small>300 mg · citrato de sodio</small></div><div class="formula-item"><strong>Potasio</strong><small>200 mg · citrato de potasio</small></div><div class="formula-item"><strong>Magnesio</strong><small>60 mg · citrato de magnesio</small></div><div class="formula-item"><strong>Vitamina C</strong><small>80 mg · ácido ascórbico</small></div><div class="formula-item"><strong>Sabor natural</strong><small>Perfil aromático según variedad</small></div><div class="formula-item"><strong>Dulzor ligero</strong><small>Stevia y una pequeña cantidad de azúcar</small></div>
+          </div></div>
+          <aside class="formula-side"><div><div class="drop" aria-hidden="true">◒</div><h3>Hazlo simple.</h3><p>Vacía un stick en agua fría. Agita hasta disolver y ajusta la cantidad de agua a tu gusto.</p></div><div class="mix-steps"><span>01 · Vacía</span><span>02 · Agita</span><span>03 · Sigue</span></div></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="momentos">
+      <div class="wrap">
+        <div class="section-head"><div><span class="eyebrow">Hecho para moverse</span><h2>Donde te encuentre el día.</h2></div><p>No existe un único momento correcto. VYRA acompaña desde la primera reunión hasta el último kilómetro.</p></div>
+        <div class="moments">
+          <article class="moment"><div class="moment-icon" aria-hidden="true">↗</div><div><span>Modo movimiento</span><h3>Antes de salir.</h3><p>Prepara tu botella y llévate un stick extra para el camino.</p></div></article>
+          <article class="moment"><div class="moment-icon" aria-hidden="true">⌁</div><div><span>Modo enfoque</span><h3>Entre bloques.</h3><p>Una pausa breve, agua fría y un perfil cítrico que cambia el ritmo.</p></div></article>
+          <article class="moment"><div class="moment-icon" aria-hidden="true">◉</div><div><span>Modo horizonte</span><h3>Fuera de ruta.</h3><p>Ligero de llevar para días de playa, montaña, viaje o ciudad.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proof-band" aria-labelledby="proof-title">
+      <div class="wrap">
+        <div class="proof-top"><div><span class="eyebrow">Prueba social conceptual</span><h2 id="proof-title">Así se sentiría<br>la comunidad.</h2></div><div><div class="rating-big">4.9 <small>/ 5</small></div><span class="demo-label">Datos ficticios de demo</span></div></div>
+        <div class="testimonials">
+          <article class="quote"><p>“El pomelo tiene ese punto fresco y seco que buscaba. La caja vive junto a mis zapatillas.”</p><div class="quote-person"><div class="avatar" aria-hidden="true">AM</div><div><strong>Andrea M.</strong><small>Reseña ficticia · corredora urbana</small></div></div></article>
+          <article class="quote"><p>“Por fin un stick que se ve bien en el escritorio y no sabe a caramelo. La Lima Eléctrica sería mi elección.”</p><div class="quote-person"><div class="avatar" aria-hidden="true">DC</div><div><strong>Diego C.</strong><small>Reseña ficticia · director creativo</small></div></div></article>
+          <article class="quote"><p>“El formato mixto resuelve el dilema: cítrico para entrenar, mora para esos días largos de viaje.”</p><div class="quote-person"><div class="avatar" aria-hidden="true">LV</div><div><strong>Lucía V.</strong><small>Reseña ficticia · fotógrafa</small></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="packs">
+      <div class="wrap">
+        <div class="section-head"><div><span class="eyebrow">Encuentra tu ritmo</span><h2>Elige tu pack.</h2></div><p>Precios y productos mostrados únicamente para demostrar una experiencia de compra. No se procesará ningún pago.</p></div>
+        <div class="shop-grid">
+          <article class="product-card"><div class="card-visual" style="--card-a:#ff816f;--card-b:#ffd46c"><div class="mini-box">VYRA<br><small>DISCOVERY</small></div></div><div class="card-body"><h3>Discovery / 6 sticks</h3><p>Dos de cada sabor para encontrar tu combinación.</p><div class="price" data-price="12">€12 <small>· €2,00 / stick</small></div><button class="btn add-cart" data-id="discovery" data-name="Discovery / 6 sticks" data-price="12" data-a="#ff816f" data-b="#ffd46c">Añadir al carrito</button></div></article>
+          <article class="product-card featured"><div class="card-visual" style="--card-a:#d9ff62;--card-b:#92dbe7"><span class="popular">Favorito demo</span><div class="mini-box">VYRA<br><small>DAILY 20</small></div></div><div class="card-body"><h3>Daily / 20 sticks</h3><p>Una caja completa del sabor que elijas.</p><div class="price" data-price="32">€32 <small>· €1,60 / stick</small></div><button class="btn add-cart" data-id="daily" data-name="Daily / 20 sticks" data-price="32" data-a="#d9ff62" data-b="#92dbe7">Añadir al carrito</button></div></article>
+          <article class="product-card"><div class="card-visual" style="--card-a:#9a89db;--card-b:#f5aece"><div class="mini-box">VYRA<br><small>FLOW 40</small></div></div><div class="card-body"><h3>Flow / 40 sticks</h3><p>Dos cajas combinables para compartir o continuar.</p><div class="price" data-price="58">€58 <small>· €1,45 / stick</small></div><button class="btn add-cart" data-id="flow" data-name="Flow / 40 sticks" data-price="58" data-a="#9a89db" data-b="#f5aece">Añadir al carrito</button></div></article>
+        </div>
+        <div class="subscribe-box"><div><h3>Convierte tu pack en suscripción</h3><p>Ahorra un 15% en esta simulación. Pausa o cambia cuando quieras.</p></div><div class="toggle-group" role="group" aria-label="Tipo de compra"><button class="active purchase-mode" data-mode="once" aria-pressed="true">Compra única</button><button class="purchase-mode" data-mode="sub" aria-pressed="false">Suscripción −15%</button></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="wrap faq-layout">
+        <div class="faq-intro"><span class="eyebrow">Sin rodeos</span><h2>Preguntas frecuentes.</h2><p>Información clara para entender el concepto, la fórmula y el funcionamiento de esta demo.</p><button class="btn btn-line" data-scroll-shop>Ver packs</button></div>
+        <div class="faq-list">
+          <details><summary>¿Qué es VYRA?</summary><p>VYRA es una marca completamente ficticia creada para esta demostración web. Presenta un concepto de mezcla de electrolitos en sticks, pero no existe como producto comercial.</p></details>
+          <details><summary>¿Cómo se prepararía?</summary><p>La indicación conceptual es mezclar un stick con 500–700 ml de agua y agitar. La intensidad de sabor puede ajustarse usando más o menos agua.</p></details>
+          <details><summary>¿Sustituye al agua o a una comida?</summary><p>No. Está planteado como complemento para dar sabor y electrolitos al agua, no como sustituto del agua, una comida o una alimentación equilibrada.</p></details>
+          <details><summary>¿Contiene azúcar y cafeína?</summary><p>La fórmula demo incluye una pequeña cantidad de azúcar y stevia para equilibrar el sabor. No incluye cafeína en ninguno de los tres perfiles.</p></details>
+          <details><summary>¿Puedo comprar los packs?</summary><p>No. Los productos, precios, reseñas, ingredientes y el carrito son ilustrativos. El checkout termina en un aviso de demostración y no solicita datos de pago.</p></details>
+          <details><summary>¿Es apropiado para todo el mundo?</summary><p>Las necesidades individuales varían. En un producto real, la persona debería revisar el etiquetado y consultar a un profesional cualificado si tiene dudas dietéticas o de salud.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta"><div class="wrap cta-box"><div><span class="eyebrow">Hydration, in motion</span><h2>Haz sitio para un ritual más fresco.</h2><p>Tres sabores, un formato ligero y una identidad diseñada para seguirte el ritmo.</p></div><button class="btn btn-acid" data-scroll-shop>Elegir mi pack <span>↗</span></button></div></section>
+  </main>
+
+  <footer><div class="wrap"><div class="footer-grid"><div class="footer-brand"><a class="logo" href="#inicio"><span class="logo-mark" aria-hidden="true"></span>VYRA</a><p>Daily Hydration Sticks. Marca y producto ficticios creados exclusivamente para esta demo.</p></div><div class="footer-col"><strong>Explorar</strong><a href="#sabores">Sabores</a><a href="#formula">Fórmula</a><a href="#packs">Packs</a></div><div class="footer-col"><strong>Ayuda</strong><a href="#faq">Preguntas</a><a href="#aviso">Aviso demo</a><a href="#aviso">Contacto demo</a></div><div class="footer-col"><strong>Social</strong><a href="#aviso">Instagram</a><a href="#aviso">Strava</a><a href="#aviso">TikTok</a></div></div><div class="footer-bottom" id="aviso"><span>© 2026 VYRA Concept. Demo sin finalidad comercial.</span><span>No afiliada ni asociada a ninguna marca real de hidratación.</span></div></div></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="cart-head"><h2 id="cartTitle">Tu carrito</h2><button class="icon-btn" id="cartClose" aria-label="Cerrar carrito">×</button></div>
+    <div class="cart-content" id="cartContent"></div>
+    <div class="cart-foot"><div class="cart-total"><span>Total demo</span><span id="cartTotal">€0,00</span></div><small>Impuestos y envío simulados en el siguiente paso.</small><button class="btn btn-acid" id="checkout">Continuar — solo demo</button></div>
+  </aside>
+  <div class="notice" id="notice" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const flavors = {
+        pomelo:{title:'Pomelo Solar',code:'Perfil 01',desc:'Pomelo rosado, piel de naranja y un final sutilmente salino.',tags:['Vibrante','Poco dulce','Cítrico'],a:'#ff816f',b:'#ffd46c',letter:'P'},
+        lima:{title:'Lima Eléctrica',code:'Perfil 02',desc:'Lima fresca, hierbabuena y una acidez rápida que termina limpia.',tags:['Ácido','Herbal','Crujiente'],a:'#bde66e',b:'#92dbe7',letter:'L'},
+        mora:{title:'Mora Nocturna',code:'Perfil 03',desc:'Mora madura, hibisco y una nota suave de limón al final.',tags:['Frutal','Redondo','Suave'],a:'#9a89db',b:'#f5aece',letter:'M'}
+      };
+      const root = document.documentElement;
+      const flavorButtons = document.querySelectorAll('.flavor-btn');
+      const setFlavor = key => {
+        const f=flavors[key]; root.style.setProperty('--flavor',f.a);root.style.setProperty('--flavor-2',f.b);
+        document.getElementById('flavorTitle').textContent=f.title;document.getElementById('flavorCode').textContent=f.code;document.getElementById('flavorDesc').textContent=f.desc;
+        document.getElementById('flavorTags').innerHTML=f.tags.map(x=>`<span>${x}</span>`).join('');document.getElementById('flavorShowcase').dataset.letter=f.letter;
+        ['boxFlavor','stickFlavor','bigStickFlavor'].forEach(id=>document.getElementById(id).textContent=f.title);
+        document.getElementById('heroStage').setAttribute('aria-label',`Representación gráfica de caja y sticks VYRA sabor ${f.title}`);
+        flavorButtons.forEach(b=>{const on=b.dataset.flavor===key;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+      };
+      flavorButtons.forEach(btn=>btn.addEventListener('click',()=>setFlavor(btn.dataset.flavor)));
+
+      const menuBtn=document.getElementById('menuBtn'),navLinks=document.getElementById('navLinks');
+      menuBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú')});
+      navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));
+      document.querySelectorAll('[data-scroll-shop]').forEach(b=>b.addEventListener('click',()=>document.getElementById('packs').scrollIntoView({behavior:'smooth'})));
+
+      let mode='once'; const cart=[];
+      const drawer=document.getElementById('cartDrawer'),overlay=document.getElementById('overlay'),content=document.getElementById('cartContent'),count=document.getElementById('cartCount'),total=document.getElementById('cartTotal'),notice=document.getElementById('notice');
+      const money=n=>new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(n);
+      const announce=msg=>{notice.textContent=msg;notice.classList.add('show');clearTimeout(announce.t);announce.t=setTimeout(()=>notice.classList.remove('show'),2600)};
+      const openCart=()=>{drawer.classList.add('open');overlay.classList.add('open');drawer.setAttribute('aria-hidden','false');document.body.classList.add('locked');document.getElementById('cartClose').focus()};
+      const closeCart=()=>{drawer.classList.remove('open');overlay.classList.remove('open');drawer.setAttribute('aria-hidden','true');document.body.classList.remove('locked');document.getElementById('cartOpen').focus()};
+      const render=()=>{
+        const qty=cart.reduce((s,x)=>s+x.qty,0);count.textContent=qty;
+        if(!cart.length){content.innerHTML='<div class="cart-empty"><b>◎</b><strong>Tu carrito está ligero.</strong><p>Añade un pack para probar la experiencia.</p></div>'}
+        else content.innerHTML=cart.map((x,i)=>`<div class="cart-item"><div class="cart-thumb" style="--thumb-a:${x.a};--thumb-b:${x.b}">V</div><div><h3>${x.name}</h3><small>${mode==='sub'?'Suscripción demo · −15%':'Compra única'}</small><div class="qty"><button data-action="minus" data-i="${i}" aria-label="Reducir cantidad de ${x.name}">−</button><span>${x.qty}</span><button data-action="plus" data-i="${i}" aria-label="Aumentar cantidad de ${x.name}">+</button><button class="remove" data-action="remove" data-i="${i}">Quitar</button></div></div><div class="cart-price">${money(x.price*(mode==='sub'?.85:1)*x.qty)}</div></div>`).join('');
+        total.textContent=money(cart.reduce((s,x)=>s+x.price*(mode==='sub'?.85:1)*x.qty,0));
+      };
+      document.querySelectorAll('.add-cart').forEach(btn=>btn.addEventListener('click',()=>{const found=cart.find(x=>x.id===btn.dataset.id);if(found)found.qty++;else cart.push({id:btn.dataset.id,name:btn.dataset.name,price:+btn.dataset.price,a:btn.dataset.a,b:btn.dataset.b,qty:1});render();openCart();announce('Pack añadido al carrito demo')}));
+      content.addEventListener('click',e=>{const b=e.target.closest('[data-action]');if(!b)return;const i=+b.dataset.i;if(b.dataset.action==='plus')cart[i].qty++;if(b.dataset.action==='minus'){cart[i].qty--;if(cart[i].qty<1)cart.splice(i,1)}if(b.dataset.action==='remove')cart.splice(i,1);render()});
+      document.querySelectorAll('.purchase-mode').forEach(btn=>btn.addEventListener('click',()=>{mode=btn.dataset.mode;document.querySelectorAll('.purchase-mode').forEach(b=>{const on=b===btn;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});document.querySelectorAll('.price').forEach(el=>{const p=+el.dataset.price;el.childNodes[0].nodeValue=(mode==='sub'?money(p*.85):money(p))+' '});render();announce(mode==='sub'?'Suscripción demo aplicada: −15%':'Compra única seleccionada')}));
+      document.getElementById('cartOpen').addEventListener('click',openCart);document.getElementById('cartClose').addEventListener('click',closeCart);overlay.addEventListener('click',closeCart);
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))closeCart()});
+      document.getElementById('checkout').addEventListener('click',()=>announce(cart.length?'Demo completada: no se realizará ningún cobro.':'Añade un pack antes de continuar.'));
+      document.querySelectorAll('a[href="#aviso"]').forEach(a=>a.addEventListener('click',()=>announce('Enlace ilustrativo: esta marca es una demo.')));
+      render();
+    })();
+  </script>
+</body>
+</html>
