@@ -19,4 +19,9 @@ menu.addEventListener('click',()=>{const open=links.classList.toggle('open');men
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&links.classList.contains('open')){closeMenu();menu.focus();}});
 document.addEventListener('click',e=>{if(!links.contains(e.target)&&!menu.contains(e.target))closeMenu();});
+const requested=new URLSearchParams(location.search).get('add');
+if(Object.hasOwn(flavors,requested)){
+  history.replaceState(null,'',location.pathname+'#shop');
+  add(requested);
+}
 })();

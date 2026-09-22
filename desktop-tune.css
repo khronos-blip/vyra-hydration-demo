@@ -1,0 +1,31 @@
+/* More legible, full-width desktop rhythm. Mobile keeps its own composition. */
+@media (min-width:1001px){
+  :root{--wrap:min(1440px,calc(100% - 80px))}
+  .nav{min-height:82px}
+  .nav .brand{font-size:27px}
+  .navlinks{gap:38px;font-size:14px;letter-spacing:.045em}
+  .demo{font-size:11px;padding:8px 16px}
+  .flavor-market.hero{padding-top:65px}
+  .market-title{margin-bottom:55px}
+  .market-title>.kicker{font-size:13px;margin-bottom:28px}
+  .market-summary{max-width:365px}
+  .market-summary p{font-size:28px}
+  .market-summary>span,.market-summary>a{font-size:16px}
+  .flavor-shelf{gap:28px}
+  .flavor-story{padding:30px 28px 28px}
+  .flavor-heading>span{font-size:12px}
+  .flavor-heading h2{font-size:clamp(39px,3.4vw,58px)}
+  .flavor-story figcaption{font-size:11px}
+  .flavor-purchase>p{font-size:16px;min-height:26px}
+  .flavor-purchase>button{font-size:16px;min-height:58px}
+  .flavor-purchase>button span{font-size:17px}
+  .market-foot{font-size:13px}
+  .mix-copy p{font-size:18px}
+  .technical>summary,.purchase-faq summary{font-size:16px}
+  .purchase-faq details p{font-size:15px}
+  .footer-links{font-size:14px}
+}
+.flavor-heading h2 a:hover,.flavor-heading h2 a:focus-visible{opacity:.72}
+.flavor-detail{display:inline-flex;align-items:center;min-height:40px;margin:0 0 12px;border-bottom:1px solid currentColor;font-size:13px;font-weight:750}
+.flavor-detail:hover{text-decoration:none;opacity:.7}
+@media(max-width:680px){.flavor-detail{font-size:14px}}
