@@ -20,4 +20,5 @@
   img.alt = product.alt;
   document.getElementById('product-add').href = 'index.html?add='+selected+'#shop';
   document.querySelector('[data-related="'+selected+'"]').setAttribute('aria-current','page');
+  setDetailProduct({id:selected,name:product.name,note:'1 box · 20 sticks × 7 g',price:32,image:'assets/'+product.image+'-640.webp'});
 })();
