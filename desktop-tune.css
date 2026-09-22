@@ -35,6 +35,8 @@
 @media(max-width:680px){.flavor-detail{font-size:14px}}
 /* Visibility and inertness change immediately so keyboard focus can enter. */
 .cart{transition-property:transform}
+/* The FAQ background spans the viewport; only its content follows the wrap. */
+.purchase-faq.wrap{width:100%;padding-inline:calc((100% - var(--wrap))/2)}
 /* Reading-size copy and uncropped preparation photography at every breakpoint. */
 .flavor-market.hero{overflow:visible}
 .market-title h1{line-height:1.02}
