@@ -1,4 +1,8 @@
 /* More legible, full-width desktop rhythm. Mobile keeps its own composition. */
+/* Links must not break the image sizing contract. Preserve the complete photo. */
+.flavor-story figure>a{display:block}
+.flavor-story figure img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border-radius:2px}
+.flavor-story figcaption{position:static;margin-top:10px}
 @media (min-width:1001px){
   :root{--wrap:min(1440px,calc(100% - 80px))}
   .nav{min-height:82px}
@@ -29,3 +33,5 @@
 .flavor-detail{display:inline-flex;align-items:center;min-height:40px;margin:0 0 12px;border-bottom:1px solid currentColor;font-size:13px;font-weight:750}
 .flavor-detail:hover{text-decoration:none;opacity:.7}
 @media(max-width:680px){.flavor-detail{font-size:14px}}
+/* Visibility and inertness change immediately so keyboard focus can enter. */
+.cart{transition-property:transform}

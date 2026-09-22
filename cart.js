@@ -1,6 +1,13 @@
 /* Shared, dependency-free demo cart. All values are conceptual; no network writes. */
 // Reveal the mobile purchase bar only after the hero, never over its first impression.
 const quickPurchase = document.querySelector('.mobile-purchase');
+function revealHashTarget() {
+  const target = document.getElementById(location.hash.slice(1));
+  const disclosure = target?.matches('details') ? target : target?.closest('details');
+  if (disclosure) { disclosure.open = true; requestAnimationFrame(() => target.scrollIntoView()); }
+}
+window.addEventListener('hashchange', revealHashTarget);
+window.addEventListener('load', revealHashTarget);
 document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => {
   const target = document.getElementById(link.getAttribute('href').slice(1));
   const disclosure = target?.matches('details') ? target : target?.closest('details');
@@ -21,6 +28,18 @@ window.createDemoCart = function(config) {
   const list = $(config.list), total = $(config.total), badge = $(config.badge);
   const checkout = $('#checkout'), foot = drawer.querySelector('.cart-foot');
   const lines = new Map();
+  const storageKey = 'storefront-bag-v1:' + location.pathname.replace(/[^/]*$/, '');
+  // Keep a bag while exploring this brand; never trust stored markup or URLs.
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(storageKey) || '[]');
+    if (Array.isArray(saved)) for (const x of saved.slice(0,20)) {
+      if (x && /^[a-z0-9-]{1,50}$/.test(x.id) &&
+          ['name','note'].every(k => typeof x[k] === 'string' && x[k].length < 200 && !/[<>&"']/.test(x[k])) &&
+          /^assets\/[a-z0-9-]+\.webp$/.test(x.image) &&
+          Number.isFinite(x.price) && x.price > 0 && x.price < 1000 &&
+          Number.isInteger(x.quantity) && x.quantity > 0 && x.quantity <= 99) lines.set(x.id, x);
+    }
+  } catch { /* Storage can be unavailable in private browsing. */ }
   let returnFocus = null, completed = false, timer;
   const money = n => new Intl.NumberFormat('en', {style:'currency',currency:config.currency,maximumFractionDigits:0}).format(n);
   function announce(message) {
@@ -36,6 +55,7 @@ window.createDemoCart = function(config) {
     }
   }
   function render() {
+    try { sessionStorage.setItem(storageKey, JSON.stringify([...lines.values()])); } catch {}
     const rows = [...lines.values()], count = rows.reduce((s,x)=>s+x.quantity,0);
     badge.textContent = count;
     trigger.setAttribute('aria-label', 'Open ' + config.noun + ', ' + count + ' packs');
@@ -80,7 +100,7 @@ window.createDemoCart = function(config) {
     const x=lines.get(b.dataset.id); if(!x) return;
     const order=[...lines.keys()], index=order.indexOf(x.id);
     if(b.dataset.action==='remove') lines.delete(x.id);
-    else { x.quantity+=b.dataset.action==='plus'?1:-1; if(x.quantity<=0) lines.delete(x.id); }
+    else { x.quantity=Math.min(99,x.quantity+(b.dataset.action==='plus'?1:-1)); if(x.quantity<=0) lines.delete(x.id); }
     render();
     const candidates=[...list.querySelectorAll('[data-action]')];
     const replacement=candidates.find(el=>el.dataset.id===x.id&&el.dataset.action===b.dataset.action)
@@ -103,7 +123,7 @@ window.createDemoCart = function(config) {
   trigger.setAttribute('aria-controls','cart'); trigger.setAttribute('aria-expanded','false');
   trigger.addEventListener('click',show); close.addEventListener('click',hide); overlay.addEventListener('click',hide);
   drawer.inert=true; render();
-  return {add(product) { completed=false; const old=lines.get(product.id); old ? old.quantity++ : lines.set(product.id,{...product,quantity:1}); render();show();announce(product.name+' added'); }};
+  return {add(product) { completed=false; const old=lines.get(product.id); old ? old.quantity=Math.min(99,old.quantity+1) : lines.set(product.id,{...product,quantity:1}); render();show();announce(product.name+' added'); }};
 };
 window.setProductPhoto = function(img, name, alt) {
   img.srcset = 'assets/'+name+'-640.webp 640w, assets/'+name+'.webp 1254w';
