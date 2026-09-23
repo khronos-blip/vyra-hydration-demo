@@ -9,6 +9,11 @@ body .campaign .hero-safety,body .purchase-meta>span,body .purchase-meta small,b
 body .signal-options .option-action,body .pack i,body .close{font-size:14px!important}
 body .pack i{min-width:44px;min-height:44px}
 @media(max-width:780px){body .kicker,body .eyebrow,body .label{font-size:14px!important;letter-spacing:.035em}body .signal-options span,body .signal-options small{font-size:14px!important}}
+/* Comfortable targets and legible counts across all page types. */
+.detail-bag{font-size:14px}
+.shop-quantity{flex-wrap:wrap;gap:6px}
+.shop-quantity button{min-width:44px;min-height:44px}
+.detail-header nav a,.detail-header .navlinks a,.navlinks>a,.nav-links>a,.nav .links>a{display:inline-flex;align-items:center;min-height:44px}
 /* One type system per brand across home, About, product and bag. */
 body{font-size:18px;line-height:1.65}
 body,body *{font-family:var(--brand-body)!important}
@@ -37,6 +42,9 @@ p,.lead,.intro p,.product-copy .intro,.mix-copy p,.step p,.companion p,.signatur
  .related-card{display:flex;align-items:center;gap:18px;padding:12px}
  .related-card img{width:96px;height:112px;object-fit:contain;flex:none;margin:0}
 }
+.icon{min-width:44px;min-height:44px}
+.count{font-size:14px;min-width:24px;height:24px;padding-inline:4px;line-height:1}
+.flavor-purchase>button span{font-size:16px}
 .market-title h1{font-weight:700;letter-spacing:-.045em;line-height:1.02}
 h2,h3,.display{letter-spacing:-.035em;line-height:1.1}
 .mix-copy p{font-size:26px;line-height:1.6}
