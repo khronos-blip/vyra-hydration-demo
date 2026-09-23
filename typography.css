@@ -1,0 +1,50 @@
+@font-face{font-family:VyraText;src:url('assets/fonts/outfit.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:VyraText;src:url('assets/fonts/outfit-bold.ttf') format('truetype');font-weight:600 950;font-display:swap}
+:root{--brand-body:VyraText,sans-serif;--brand-display:VyraText,sans-serif}
+
+/* Explicit small-copy floors override legacy component specificity. */
+body .kicker,body .eyebrow,body .label{font-size:15px!important;line-height:1.6;letter-spacing:.065em}
+body .mobile-about,body .demo,body .preview,body figcaption,body .footer-col b,body .footer-col p,body .mobile-purchase span,body .mobile-purchase strong{font-size:14px!important;line-height:1.5}
+body .campaign .hero-safety,body .purchase-meta>span,body .purchase-meta small,body .signature-copy dt,body .signature-copy dd,body .market-foot span,body .pack-title>p,body .signal-options span,body .signal-options small{font-size:16px!important;line-height:1.55}
+body .signal-options .option-action,body .pack i,body .close{font-size:14px!important}
+body .pack i{min-width:44px;min-height:44px}
+@media(max-width:780px){body .kicker,body .eyebrow,body .label{font-size:14px!important;letter-spacing:.035em}body .signal-options span,body .signal-options small{font-size:14px!important}}
+/* One type system per brand across home, About, product and bag. */
+body{font-size:18px;line-height:1.65}
+body,body *{font-family:var(--brand-body)!important}
+h1,h2,h3,.display,.display *,h1 *,h2 *,h3 *{font-family:var(--brand-display)!important}
+p,.lead,.intro p,.product-copy .intro,.mix-copy p,.step p,.companion p,.signature-copy>p,.editorial-intro>p,.flavor-purchase>p,.signal-buy>p{font-size:20px;line-height:1.65}
+.kicker,.eyebrow,.label,.edition-tag,.companion .edition-tag,.flavor-heading>span,.market-foot,.campaign-caption,.signal-photo figcaption,.morning-panorama figcaption,.pack small,.pack>span,.pack-note,.detail-crumb{font-size:15px;line-height:1.6;letter-spacing:.065em}
+.navlinks,.nav-links,.nav .links,.site-nav nav,.detail-header nav,.detail-header .navlinks,.bag-button,.cart-trigger{font-size:16px!important}
+.button,.btn,.purchase-button,.flavor-purchase>button,.edition-link,.edition-detail,.flavor-detail,.detail-options a,.text-link,.market-summary>a,.editorial-intro .button,.campaign .button,.signal-buy .button{font-size:16px!important;line-height:1.45;min-height:48px}
+.technical>summary,.faq summary,.purchase-faq summary{font-size:20px;line-height:1.55}
+.faq p,.purchase-faq details p{font-size:18px;line-height:1.75}
+.footer,.footer-links,.footer-col a,.footer-bottom,footer p,.footer p,.product-copy small,.caution,.hero-safety,.signal-buy .hero-safety{font-size:15px;line-height:1.65}
+.shop-line p,.shop-line small,.cart-foot small,.cart-note,.cart-foot p,.shop-quantity .shop-remove{font-size:14px}
+.shop-line h3{font-size:19px;line-height:1.35}
+.detail-options a{padding:10px 14px}
+.related-card{font-size:22px;line-height:1.4}
+@media(max-width:780px){
+ body{font-size:17px}
+ p,.lead,.intro p,.product-copy .intro,.mix-copy p,.step p,.companion p,.signature-copy>p,.editorial-intro>p,.flavor-purchase>p,.signal-buy>p{font-size:17px;line-height:1.65}
+ .kicker,.eyebrow,.label,.edition-tag,.companion .edition-tag,.flavor-heading>span,.market-foot,.campaign-caption,.signal-photo figcaption,.morning-panorama figcaption,.pack small,.pack>span,.pack-note,.detail-crumb{font-size:14px;letter-spacing:.035em}
+ .navlinks,.nav-links,.nav .links,.site-nav nav,.detail-header nav,.detail-header .navlinks,.bag-button,.cart-trigger{font-size:14px!important}
+ .button,.btn,.purchase-button,.flavor-purchase>button,.edition-link,.edition-detail,.flavor-detail,.detail-options a,.text-link,.market-summary>a,.editorial-intro .button,.campaign .button,.signal-buy .button{font-size:15px!important}
+ .technical>summary,.faq summary,.purchase-faq summary{font-size:18px}
+ .faq p,.purchase-faq details p{font-size:17px}
+ .related-card{font-size:16px}
+ .related-grid{grid-template-columns:1fr}
+ .related-card{display:flex;align-items:center;gap:18px;padding:12px}
+ .related-card img{width:96px;height:112px;object-fit:contain;flex:none;margin:0}
+}
+.market-title h1{font-weight:700;letter-spacing:-.045em;line-height:1.02}
+h2,h3,.display{letter-spacing:-.035em;line-height:1.1}
+.mix-copy p{font-size:26px;line-height:1.6}
+.meter span{font-size:18px;letter-spacing:.02em;line-height:1.5}
+.market-summary p{font-size:30px;line-height:1.4}
+.market-summary>span{font-size:18px}
+.market-foot{font-size:17px}
+.flavor-heading>span,.flavor-story figcaption{font-size:15px}
+.flavor-heading h2{min-height:2.2em}
+@media(max-width:1000px) and (min-width:681px){.flavor-shelf{grid-template-columns:1fr}.flavor-story{display:grid;grid-template-columns:1fr 1fr;gap:20px}.flavor-heading{grid-column:1/-1}.flavor-purchase{align-self:center}.flavor-heading h2{min-height:0}}
+@media(max-width:680px){.market-title h1{font-size:clamp(66px,20vw,100px)}.market-summary{grid-template-columns:1fr}.market-summary p{font-size:23px}.market-summary>span{font-size:17px}.market-foot{font-size:14px}.mix-copy p{font-size:21px}.meter{grid-template-columns:1fr;gap:16px}.meter span{font-size:18px}.flavor-heading h2{min-height:0}.detail-options a{font-size:14px!important;padding:10px 6px}.flavor-heading>span,.flavor-story figcaption{font-size:14px}}
